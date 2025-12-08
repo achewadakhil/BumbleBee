@@ -1,6 +1,9 @@
 import express from "express";
 import authRouter from "./routes/authRoutes.js";
 import cors from "cors";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+dotenv.config();
 
 
 const app = express();
@@ -25,4 +28,11 @@ app.get("/",(req,res)=>{
 
 app.use("/auth",authRouter);
 
-app.listen(8080,()=>console.log("Server is running at server 8080"));
+(async ()=>{
+
+    await mongoose.connect(process.env.MONGO_URI)
+    .then(()=>console.log("MongoDB connected successfully"))
+    .catch(() => console.log("Error while connecting to MONGODB"));
+
+    app.listen(process.env.PORT,()=>console.log("Server is running at port 8080"));
+})();
