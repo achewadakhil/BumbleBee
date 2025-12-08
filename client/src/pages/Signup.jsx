@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function SignupPage() {
-  const [form, setForm] = useState({ email: "", password: "", confirmPassword: "", role: "student" });
+  const [form, setForm] = useState({ email: "", password: "", confirmPassword: "", role: "buyer" });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
@@ -26,8 +26,19 @@ export default function SignupPage() {
     if (Object.keys(v).length) return setErrors(v);
 
     try {
+      
+      const res = await fetch("http://localhost:8080/auth/signup",{
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(form)
+      });
+      if(!res.ok)   console.log("Error in f/signup");
+      const data = await res.json();
+      console.log(data);
       setMessage(`Account created for ${form.email} as ${form.role}`);
-      setForm({ email: "", password: "", confirmPassword: "", role: "student" });
+      setForm({ email: "", password: "", confirmPassword: "", role: "buyer" });
     } catch (err) {
       setMessage("Failed to create account");
     }
@@ -62,6 +73,7 @@ export default function SignupPage() {
               <option value="buyer">Buyer</option>
               <option value="vendor">Vendor</option>
             </select>
+            {errors.role && <p className="text-red-400 text-xs">{errors.role}</p>}
           </div>
 
           <button type="submit" className="w-full py-2 rounded-md mt-2 bg-teal-600 text-white font-medium hover:opacity-95">Create account</button>
