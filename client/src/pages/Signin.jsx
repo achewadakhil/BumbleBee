@@ -25,9 +25,6 @@ export default function SigninPage() {
     if (Object.keys(v).length) return setErrors(v);
 
     try {
-      // replace with your API call
-      // const res = await fetch('/api/auth/signin', { method: 'POST', body: JSON.stringify(form) })
-      // const data = await res.json()
       setMessage(`Signed in as ${form.email} (${form.role})`);
       setForm({ email: "", password: "", role: "student" });
     } catch (err) {
