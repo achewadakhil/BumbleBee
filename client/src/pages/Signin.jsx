@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SigninPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -45,6 +48,8 @@ export default function SigninPage() {
       localStorage.setItem("token",data.token);
 
       setMessage(`Signed in as ${form.email}`);
+
+      navigate("/");
     } catch (err) {
       setMessage("Sign in failed");
     }

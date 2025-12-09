@@ -9,6 +9,7 @@ export default function Home() {
       </h1>
 
       <div className="flex gap-6">
+
         <Link
           to="/signup"
           className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-lg font-semibold transition"

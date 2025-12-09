@@ -41,9 +41,7 @@ export default function SignupPage() {
       const data = await res.json();
       console.log(data);
       setMessage(`Account created for ${form.email} as ${form.role}`);
-      setTimeout(() => {
         navigate("/signin");
-      }, 5000);
     } catch (err) {
       setMessage("Failed to create account");
     }
