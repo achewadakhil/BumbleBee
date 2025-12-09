@@ -58,6 +58,7 @@ export async function userSignIn(req,res){
         const token = jwt.sign({userId : foundUser._id},process.env.JWT_SECRET,{expiresIn : "7d"});
 
         res.setHeader("token",token);
+        res.setHeader("role",foundUser.role);
 
         res.json({
             message : "b/auth/signin ok",
