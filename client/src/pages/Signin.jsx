@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function SigninPage() {
-  const [form, setForm] = useState({ email: "", password: "", role: "student" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
@@ -25,8 +25,26 @@ export default function SigninPage() {
     if (Object.keys(v).length) return setErrors(v);
 
     try {
-      setMessage(`Signed in as ${form.email} (${form.role})`);
-      setForm({ email: "", password: "", role: "student" });
+
+      const res = await fetch("http://localhost:8080/auth/signin",{
+        method : "POST",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(form)
+      });
+
+      if(!res.ok){
+        console.log("Error in f/signin");
+        setErrors("Error in b/auth/signin");
+      }
+
+      const data = await res.json();
+
+      console.log(data);
+      localStorage.setItem("token",data.token);
+
+      setMessage(`Signed in as ${form.email}`);
     } catch (err) {
       setMessage("Sign in failed");
     }

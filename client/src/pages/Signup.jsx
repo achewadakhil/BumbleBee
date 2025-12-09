@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {
   const [form, setForm] = useState({ email: "", password: "", confirmPassword: "", role: "buyer" });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -38,7 +41,9 @@ export default function SignupPage() {
       const data = await res.json();
       console.log(data);
       setMessage(`Account created for ${form.email} as ${form.role}`);
-      setForm({ email: "", password: "", confirmPassword: "", role: "buyer" });
+      setTimeout(() => {
+        navigate("/signin");
+      }, 5000);
     } catch (err) {
       setMessage("Failed to create account");
     }
