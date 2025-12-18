@@ -9,6 +9,9 @@ function NavBar() {
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
+  // console.log("token",token);
+
+  // console.log(typeof(token));
 
   return (
     <nav className="w-full bg-gray-800 text-white shadow-md px-8 py-4 flex items-center justify-between">
@@ -18,21 +21,30 @@ function NavBar() {
           Bumble<span className="text-yellow-400">Bee</span>
         </h1>
 
-        <Link 
-          to="/buy" 
-          className="text-lg font-medium hover:text-blue-400 transition"
-        >
-          Buy
-        </Link>
+        {
+          (token && token !== "undefined" && token !== "null") &&
+          (
+            <>
+              <Link 
+                to="/buy" 
+                className="text-lg font-medium hover:text-blue-400 transition"
+              >
+                Buy
+              </Link>
 
-        {role === "admin" && (
-          <Link 
-            to="/post" 
-            className="text-lg font-medium hover:text-blue-400 transition"
-          >
-            Post
-          </Link>
-        )}
+              {role === "vendor" && (
+                <Link 
+                  to="/post" 
+                  className="text-lg font-medium hover:text-blue-400 transition"
+                >
+                  Post
+                </Link>
+              )}
+            </>
+          )
+        }
+
+        
       </div>
 
       <div className="flex items-center gap-6">
@@ -44,7 +56,7 @@ function NavBar() {
           Home
         </Link>
 
-        {!token && (
+        {(!token || token === "undefined" || token === "null") && (
           <>
             <Link 
               to="/signup" 
@@ -61,7 +73,7 @@ function NavBar() {
             </Link>
           </>
         )}
-        {token && (
+        {(token && token !== "undefined" && token !== "null") && (
           <button
             onClick={() => {
               localStorage.clear();

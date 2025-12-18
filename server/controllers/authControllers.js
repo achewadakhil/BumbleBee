@@ -56,13 +56,14 @@ export async function userSignIn(req,res){
         }
 
         const token = jwt.sign({userId : foundUser._id},process.env.JWT_SECRET,{expiresIn : "7d"});
-
+        const role = foundUser.role;
         res.setHeader("token",token);
-        res.setHeader("role",foundUser.role);
+        console.log(`user role : ${foundUser.role}`);
+        // res.setHeader("role",foundUser.role);
 
         res.json({
             message : "b/auth/signin ok",
-            email,password,token
+            email,password,token,role
         });
 
     }catch(err){

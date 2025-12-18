@@ -42,11 +42,19 @@ export default function SigninPage() {
         setErrors("Error in b/auth/signin");
       }
 
+      const token = res.headers.get("token");
+      // console.log(`token form header : ${token}`);
+      
       const data = await res.json();
 
-      console.log(data);
-      localStorage.setItem("token",data.token);
+      const role = data.role;
+      // console.log(data);
+      console.log(`role from result : ${role}`);
+      console.log(`token from headers : ${token}`);
 
+      localStorage.setItem("token",token);
+      localStorage.setItem("role",role);
+      // console.log("Hello");
       setMessage(`Signed in as ${form.email}`);
 
       navigate("/");
