@@ -3,6 +3,7 @@ import authRouter from "./routes/authRoutes.js";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import vendorRouter from "./routes/vendorRoutes.js";
 dotenv.config();
 
 
@@ -14,7 +15,7 @@ app.use(
         exposedHeaders : ["token","role"],
         credentials : true
     })
-)
+);
 
 app.use(express.json());
 
@@ -25,6 +26,8 @@ app.get("/",(req,res)=>{
 });
 
 app.use("/auth",authRouter);
+
+app.use("/v",vendorRouter);
 
 (async ()=>{
 

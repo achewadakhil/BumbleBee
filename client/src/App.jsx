@@ -2,6 +2,7 @@ import { BrowserRouter, Outlet, Route, Routes, useNavigate, Link } from "react-r
 import SigninPage from "./pages/Signin";
 import SignupPage from "./pages/Signup";
 import Home from "./pages/Home";
+import PostAd from "./pages/PostAd";
 
 
 function NavBar() {
@@ -110,9 +111,10 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/signin" element={<SigninPage />} />
+          <Route path = "/" element={<Home />} />
+          <Route path = "/signup" element={<SignupPage />} />
+          <Route path = "/signin" element={<SigninPage />} />
+          <Route path = "/post" element = {<PostAd />} />
         </Route>
       </Routes>
     </BrowserRouter>
