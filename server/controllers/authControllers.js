@@ -73,3 +73,39 @@ export async function userSignIn(req,res){
         })
     }
 }
+
+export async function validateUser(req, res, next){
+    const {token} = req.headers;
+    console.log(token);
+    try{
+
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
+        const userId = decoded.userId;
+        // console.log(`userId at b/auth/validate : ${userId}`);
+        if(!userId){
+            return res.json({
+                message : "Invalid jwt token",
+                err : "b/validateUser"
+            })
+        }
+
+        const foundUser = await userModel.findById(userId);
+
+        // console.log(foundUser);
+
+        req.user = {
+            userId,
+            role : foundUser.role
+        }
+         
+        next();
+    }catch(err){
+        // console.log("Token cant be validated in b/auth/validate");
+        // console.log(err);
+        res.json({
+            message : "err at b/auth/validateUser",
+            err
+        });
+    }
+
+}
