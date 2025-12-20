@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import vendorRouter from "./routes/vendorRoutes.js";
+import buyerRouter from "./routes/buyerRoutes.js";
 dotenv.config();
 
 
@@ -28,6 +29,8 @@ app.get("/",(req,res)=>{
 app.use("/auth",authRouter);
 
 app.use("/v",vendorRouter);
+
+app.use("/buy",buyerRouter);
 
 (async ()=>{
 

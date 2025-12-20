@@ -76,7 +76,7 @@ export async function userSignIn(req,res){
 
 export async function validateUser(req, res, next){
     const {token} = req.headers;
-    console.log(token);
+    // console.log(token);
     try{
 
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
