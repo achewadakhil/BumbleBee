@@ -4,6 +4,7 @@ import SignupPage from "./pages/Signup";
 import Home from "./pages/Home";
 import PostAd from "./pages/PostAd";
 import BuyAd from "./pages/BuyAd";
+import BuyAdForm from "./pages/BuyAdForm";
 
 
 function NavBar() {
@@ -117,6 +118,7 @@ export default function App() {
           <Route path = "/signin" element={<SigninPage />} />
           <Route path = "/post" element = {<PostAd />} />
           <Route path = "/buy" element = {<BuyAd />} />
+          <Route path = "/buy/:adId" element = {<BuyAdForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

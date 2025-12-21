@@ -1,5 +1,7 @@
 import { useEffect } from "react";
-import { useState } from "react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 
 function AdCard({ data, onBuy }) {
@@ -35,37 +37,15 @@ function AdCard({ data, onBuy }) {
   );
 }
 
-
-
-
-async function handleBuy(adId) {
-  try {
-    const res = await fetch(`http://localhost:8080/buy/${adId}`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        token,
-      },
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.message || "Failed to buy ad");
-      return;
-    }
-
-    alert("Ad purchased successfully!");
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong");
-  }
-}
-
 export default function BuyAd() {
   const [ads, setAds] = useState([]);
   const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
+
+  async function handleBuy(adId) {
+    navigate(`/buy/${adId}`);
+  }
 
   useEffect(() => {
     if (!token || token === "null" || token === "undefined") {
@@ -113,3 +93,5 @@ export default function BuyAd() {
     </div>
   );
 }
+
+
