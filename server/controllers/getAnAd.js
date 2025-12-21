@@ -9,7 +9,7 @@ export async function getAnAd(req,res){
         const foundAd = await adModel.findById(adId).populate("userId","email");
         console.log(foundAd);
 
-        const {equity_share, expected_cash, receiver_cash} = foundAd;
+        const {equity_share, expected_cash, received_cash} = foundAd;
         const cash_remaining = expected_cash - 100;
         const equity_remaining = (cash_remaining*equity_share) / expected_cash;
         console.log(foundAd);
