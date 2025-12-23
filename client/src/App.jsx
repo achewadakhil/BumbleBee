@@ -7,6 +7,7 @@ import PostAd from "./pages/PostAd";
 import BuyAd from "./pages/BuyAd";
 import BuyAdForm from "./pages/BuyAdForm";
 import { useState } from "react";
+import FeedbackForm from "./pages/FeedbackForm";
 
 
 function NavBar() {
@@ -45,6 +46,13 @@ function NavBar() {
                   Post
                 </Link>
               )}
+
+              <Link 
+                to="/questions" 
+                className="text-lg font-medium hover:text-blue-400 transition"
+              >
+                FeedBack
+              </Link>
             </>
           )
         }
@@ -99,8 +107,8 @@ function MVPBanner() {
   return (
     <div className="bg-yellow-600 text-black text-sm px-4 py-2 text-center">
       ⚠️ This is an MVP (early prototype) built only to validate market fit.
-Features may be incomplete and data may reset.
-Please share your feedback using the chat button at the bottom-left.
+      Features may be incomplete and data may reset.
+      Please share your feedback using the chat button at the bottom-left.
     </div>
   );
 }
@@ -167,14 +175,13 @@ function ChatBox({ onClose }) {
         </p>
       </div>
       <div className="p-3 border-t border-gray-700 flex gap-2">
-        <input
-          type="text"
+        <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message..."
+          placeholder="Any suggestions from your side"
           className="flex-1 p-2 rounded bg-gray-700 outline-none text-sm"
         />
-
+        
         <button
           onClick={handleSend}
           disabled={sending || !message.trim()}
@@ -232,6 +239,7 @@ export default function App() {
           <Route path = "/post" element = {<PostAd />} />
           <Route path = "/buy" element = {<BuyAd />} />
           <Route path = "/buy/:adId" element = {<BuyAdForm />} />
+          <Route path = "/questions" element = {<FeedbackForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -13,8 +13,6 @@ export async function getAllPosts(req, res){
     .populate("userId", "email")
     .sort({ createdAt: -1 });
 
-    res.json({ allPosts });
-
     
     console.log(allPosts);  
 

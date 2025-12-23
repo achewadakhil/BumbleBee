@@ -8,4 +8,6 @@ const feedBackSchema = new Schema({
 
 const feedBackModel = mongoose.model("feedbacks",feedBackSchema);
 
+
+
 export default feedBackModel;

@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import vendorRouter from "./routes/vendorRoutes.js";
 import buyerRouter from "./routes/buyerRoutes.js";
-import { feedBack } from "./controllers/feedbacks.js";
+import { feedBack, feedBackform } from "./controllers/feedbacks.js";
 import { validateUser } from "./controllers/authControllers.js";
 dotenv.config();
 
@@ -35,6 +35,8 @@ app.use("/v",vendorRouter);
 app.use("/buy",buyerRouter);
 
 app.post("/feedback", validateUser, feedBack);
+
+app.post("/feedbackform",validateUser, feedBackform);
 
 (async ()=>{
 
