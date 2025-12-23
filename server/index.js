@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
     cors({
-        origin :"http://localhost:5173",
+        origin :"https://694a767b8574640008c6066d--bumble-bee11.netlify.app/",
         exposedHeaders : ["token","role"],
         credentials : true
     })
