@@ -12,13 +12,25 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://694a767b8574640008c6066d--bumble-bee11.netlify.app"
+];
+
 app.use(
-    cors({
-        origin :"https://694a767b8574640008c6066d--bumble-bee11.netlify.app",
-        exposedHeaders : ["token","role"],
-        credentials : true
-    })
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    exposedHeaders: ["token", "role"]
+  })
 );
+
 
 app.use(express.json());
 
