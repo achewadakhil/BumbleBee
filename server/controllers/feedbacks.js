@@ -37,7 +37,7 @@ export async function feedBack(req, res){
 export async function feedBackform(req,res){
     
     const {userId} = req.user;
-    const {problemBefore,seriousness,mostUseful,annoyingPart,removableFeature,usageFrequency,willingToPay,mustHaveChange,disappointmentLevel} = req.body;
+    const {problemBefore,seriousness,mostUseful,annoyingPart,removableFeature,usageFrequency,willingToPay,mustHaveChange,disappointmentLevel,overallReview} = req.body;
 
     // console.log(res.body);
     try{
@@ -51,6 +51,7 @@ export async function feedBackform(req,res){
             willingToPay,
             mustHaveChange,
             disappointmentLevel,
+            overallReview,
             userId,
         });
 

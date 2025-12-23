@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export async function userSignUp(req,res){
-    const {email, password, role } = req.body;
+    const {email, password, role, name} = req.body;
     console.log(req.body)
     try{
         const foundUser = await userModel.findOne({
@@ -21,6 +21,7 @@ export async function userSignUp(req,res){
         await userModel.create({
             email,
             password : await bcrypt.hash(password,10),
+            name,
             role
         });
         res.json({

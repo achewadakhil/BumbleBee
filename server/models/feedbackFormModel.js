@@ -11,7 +11,7 @@ const feedBackformSchema = new Schema({
     mustHaveChange: {type : String, required : true},
     disappointmentLevel: {type : String,required : true},
     userId : { type : Schema.Types.ObjectId, ref : "users" ,required : true},
-
+    overallReview : {type : String}
 });
 
 const feedBackformModel = mongoose.model("feedbackforms",feedBackformSchema);

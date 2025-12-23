@@ -48,7 +48,7 @@ function NavBar() {
               )}
 
               <Link 
-                to="/questions" 
+                to="/feedback" 
                 className="text-lg font-medium hover:text-blue-400 transition"
               >
                 FeedBack
@@ -239,7 +239,7 @@ export default function App() {
           <Route path = "/post" element = {<PostAd />} />
           <Route path = "/buy" element = {<BuyAd />} />
           <Route path = "/buy/:adId" element = {<BuyAdForm />} />
-          <Route path = "/questions" element = {<FeedbackForm />} />
+          <Route path = "/feedback" element = {<FeedbackForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

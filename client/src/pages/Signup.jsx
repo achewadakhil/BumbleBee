@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {
-  const [form, setForm] = useState({ email: "", password: "", confirmPassword: "", role: "buyer" });
+  const [form, setForm] = useState({ email: "", password: "", confirmPassword: "", role: "buyer" 
+    ,name : ""
+  });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
@@ -20,6 +22,7 @@ export default function SignupPage() {
     if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Enter a valid email";
     if (!form.password || form.password.length < 6) errs.password = "Password must be at least 6 chars";
     if (form.confirmPassword !== form.password) errs.confirmPassword = "Passwords do not match";
+    if(!form.name || form.name.length === 0)  err.name = "Please enter your name";
     return errs;
   }
 
@@ -55,6 +58,17 @@ export default function SignupPage() {
           <label className="block text-gray-200 text-sm mb-2">Email</label>
           <input name="email" value={form.email} onChange={handleChange} type="email" placeholder="you@example.com" className="w-full bg-gray-900 border border-gray-700 text-gray-100 placeholder-gray-400 rounded-md px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-teal-500" />
           {errors.email && <p className="text-red-400 text-xs mb-2">{errors.email}</p>}
+
+          <label className="block text-gray-200 text-sm mb-2">Name</label>
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            type="text"
+            placeholder="Your name"
+            className="w-full bg-gray-900 border border-gray-700 text-gray-100 placeholder-gray-400 rounded-md px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          {errors.name && <p className="text-red-400 text-xs mb-2">{errors.name}</p>}
 
           <label className="block text-gray-200 text-sm mt-2 mb-2">Password</label>
           <input name="password" value={form.password} onChange={handleChange} type="password" placeholder="••••••" className="w-full bg-gray-900 border border-gray-700 text-gray-100 placeholder-gray-400 rounded-md px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-teal-500" />
