@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
+
 
 function BuyEquity({ cash_remaining, equity_share, expected_cash }) {
   const [amount, setAmount] = useState("");
@@ -36,7 +39,7 @@ function BuyEquity({ cash_remaining, equity_share, expected_cash }) {
     if (error || !amount) return;
 
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:8080/buy/ad/${adId}`,{
+    const res = await fetch(`${API}/buy/ad/${adId}`,{
       method : "POST",
       headers : {
         token,
@@ -114,7 +117,7 @@ export default function BuyAdForm() {
   useEffect(() => {
     async function fetchAdDetails() {
       try {
-        const res = await fetch(`http://localhost:8080/buy/ad/${adId}`, {
+        const res = await fetch(`${API}/buy/ad/${adId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -198,7 +201,6 @@ export default function BuyAdForm() {
   );
 }
 
-/* ================= SMALL UI HELPERS ================= */
 
 function Section({ title, children }) {
   return (

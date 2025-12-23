@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
+
 export default function SignupPage() {
   const [form, setForm] = useState({ email: "", password: "", confirmPassword: "", role: "buyer" 
     ,name : ""
@@ -33,7 +36,7 @@ export default function SignupPage() {
 
     try {
       
-      const res = await fetch("http://localhost:8080/auth/signup",{
+      const res = await fetch(`${API}/auth/signup`,{
         method : "POST",
         headers : {
             "Content-Type" : "application/json"

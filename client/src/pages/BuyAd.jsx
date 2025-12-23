@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
 
 
 function AdCard({ data, onBuy }) {
@@ -55,7 +57,7 @@ export default function BuyAd() {
 
     async function fetchPosts() {
       try {
-        const res = await fetch("http://localhost:8080/buy/allPosts", {
+        const res = await fetch(`${API}/buy/allPosts`, {
           method: "GET",
           credentials: "include",
           headers: {

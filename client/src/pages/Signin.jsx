@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
+
 export default function SigninPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
@@ -29,7 +32,7 @@ export default function SigninPage() {
 
     try {
 
-      const res = await fetch("http://localhost:8080/auth/signin",{
+      const res = await fetch(`${API}/auth/signin`,{
         method : "POST",
         headers : {
           "Content-Type" : "application/json"

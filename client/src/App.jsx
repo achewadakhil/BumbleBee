@@ -9,6 +9,9 @@ import BuyAdForm from "./pages/BuyAdForm";
 import { useState } from "react";
 import FeedbackForm from "./pages/FeedbackForm";
 
+const API = import.meta.env.VITE_BACKEND_URL;
+console.log(`API : ${API}`);
+
 
 function NavBar() {
   const navigate = useNavigate();
@@ -125,7 +128,7 @@ function ChatBox({ onClose }) {
     try {
       setSending(true);
 
-      const res = await fetch("http://localhost:8080/feedback", {
+      const res = await fetch(`${API}/feedback`, {
         method: "POST",
         credentials : "include",
         headers: {

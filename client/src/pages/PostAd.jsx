@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+
+const API = import.meta.env.VITE_BACKEND_URL;
+
+
 export default function PostAd() {
 
   const [form, setForm] = useState({
@@ -14,6 +18,7 @@ export default function PostAd() {
     validity: ""
   });
 
+
   const token = localStorage.getItem("token");
   function handleChange(e) {
     const { name, value } = e.target;
@@ -27,7 +32,7 @@ export default function PostAd() {
     e.preventDefault();
     console.log(`token at post : ${token}`);
 
-    const res = await fetch("http://localhost:8080/v/postAd",{
+    const res = await fetch(`${API}/v/postAd`,{
         method : "POST",
         credentials : "include",
         headers : {

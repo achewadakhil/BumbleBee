@@ -13,6 +13,8 @@ const initialFormState = {
   overallReview: ""
 };
 
+const API = import.meta.env.VITE_BACKEND_URL;
+
 export default function FeedbackForm() {
   const [form, setForm] = useState(initialFormState);
   const [loading, setLoading] = useState(false);
@@ -34,7 +36,7 @@ export default function FeedbackForm() {
       setLoading(true);
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:8080/feedbackform", {
+      const res = await fetch(`${API}/feedbackform`, {
         method: "POST",
         credentials: "include",
         headers: {
